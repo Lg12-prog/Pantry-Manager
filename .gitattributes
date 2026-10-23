@@ -1,0 +1,13 @@
+# Normalise line endings (the project is edited on Windows)
+* text=auto
+
+# Gradle wrapper script must keep Unix line endings
+gradlew text eol=lf
+*.bat text eol=crlf
+*.sh text eol=lf
+
+# Binary files
+*.jar binary
+*.png binary
+*.jpg binary
+*.webp binary

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="units_entries">
+        <item>Metric (g, ml)</item>
+        <item>US (oz, cups)</item>
+    </string-array>
+    <string-array name="units_values">
+        <item>metric</item>
+        <item>us</item>
+    </string-array>
+</resources>
