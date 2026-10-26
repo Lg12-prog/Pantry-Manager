@@ -33,6 +33,8 @@ public class AddEditPantryItemActivity extends AppCompatActivity {
     private long itemId = Constants.NO_ID;
     /** Expiry as UTC-midnight millis (what MaterialDatePicker returns), or null. */
     private Long expiryMillis = null;
+    /** True once the edit form has been filled from the database (so later emissions do not overwrite typing). */
+    private boolean formFilled = false;
 
     private TextInputLayout nameLayout;
     private TextInputLayout quantityLayout;
@@ -75,18 +77,24 @@ public class AddEditPantryItemActivity extends AppCompatActivity {
                 expiryMillis = savedInstanceState.getLong(STATE_EXPIRY);
             }
         } else if (editing) {
-            PantryItem item = viewModel.getItem(itemId);
-            if (item == null) {
-                finish();
-                return;
-            }
-            nameInput.setText(item.getName());
-            quantityInput.setText(FormatUtils.formatQuantity(item.getQuantity()));
-            unitInput.setText(item.getUnit(), false);
-            expiryMillis = item.getExpiryDate();
-            if (expiryMillis != null) {
-                expiryInput.setText(DateUtils.formatDate(expiryMillis));
-            }
+            // The item loads in the background from the database; fill the form once.
+            viewModel.getItem(itemId).observe(this, item -> {
+                if (item == null) {
+                    finish();
+                    return;
+                }
+                if (formFilled) {
+                    return;
+                }
+                formFilled = true;
+                nameInput.setText(item.getName());
+                quantityInput.setText(FormatUtils.formatQuantity(item.getQuantity()));
+                unitInput.setText(item.getUnit(), false);
+                expiryMillis = item.getExpiryDate();
+                if (expiryMillis != null) {
+                    expiryInput.setText(DateUtils.formatDate(expiryMillis));
+                }
+            });
         }
 
         expiryInput.setOnClickListener(v -> showDatePicker());
@@ -169,7 +177,7 @@ public class AddEditPantryItemActivity extends AppCompatActivity {
         if (itemId != Constants.NO_ID) {
             viewModel.updateItem(new PantryItem(itemId, name, quantity, unit, expiryMillis));
         } else {
-            viewModel.addItem(new PantryItem(Constants.NO_ID, name, quantity, unit, expiryMillis));
+            viewModel.addItem(new PantryItem(Constants.NEW_ITEM_ID, name, quantity, unit, expiryMillis));
         }
         finish();
     }

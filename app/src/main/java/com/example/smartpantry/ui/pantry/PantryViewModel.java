@@ -1,23 +1,31 @@
 package com.example.smartpantry.ui.pantry;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.smartpantry.data.model.PantryItem;
 import com.example.smartpantry.data.repository.PantryRepository;
 
 import java.util.List;
 
-public class PantryViewModel extends ViewModel {
+public class PantryViewModel extends AndroidViewModel {
 
-    private final PantryRepository repository = PantryRepository.getInstance();
+    private final PantryRepository repository;
+
+    public PantryViewModel(@NonNull Application application) {
+        super(application);
+        repository = PantryRepository.getInstance(application);
+    }
 
     public LiveData<List<PantryItem>> getItems() {
         return repository.getItems();
     }
 
-    public PantryItem getItem(long id) {
-        return repository.getById(id);
+    public LiveData<PantryItem> getItem(long id) {
+        return repository.getItem(id);
     }
 
     public void addItem(PantryItem item) {
