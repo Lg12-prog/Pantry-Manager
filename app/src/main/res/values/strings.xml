@@ -20,6 +20,7 @@
     <string name="hint_name">Ingredient name</string>
     <string name="hint_quantity">Quantity</string>
     <string name="hint_unit">Unit</string>
+    <string name="hint_unit_helper">Use g or kg for solids, ml or l for liquids, pcs for things you count</string>
     <string name="hint_expiry">Expiry date (optional)</string>
     <string name="expiry_date">Expiry date</string>
     <string name="clear_date">Clear date</string>

@@ -62,7 +62,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="@string/hint_unit">
+                android:hint="@string/hint_unit"
+                app:helperText="@string/hint_unit_helper"
+                app:helperTextEnabled="true">
 
                 <AutoCompleteTextView
                     android:id="@+id/input_unit"
