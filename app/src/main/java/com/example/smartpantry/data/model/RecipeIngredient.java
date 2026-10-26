@@ -1,8 +1,24 @@
 package com.example.smartpantry.data.model;
 
-/** One ingredient line of a recipe (e.g. "200 g pasta"). */
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+/**
+ * One ingredient line of a recipe (e.g. "200 g pasta"). Stored in "recipe_ingredients";
+ * deleting a recipe deletes its ingredient lines.
+ */
+@Entity(tableName = "recipe_ingredients",
+        foreignKeys = @ForeignKey(
+                entity = Recipe.class,
+                parentColumns = "id",
+                childColumns = "recipeId",
+                onDelete = ForeignKey.CASCADE),
+        indices = {@Index("recipeId")})
 public class RecipeIngredient {
 
+    @PrimaryKey(autoGenerate = true)
     private long id;
     private long recipeId;
     private String name;

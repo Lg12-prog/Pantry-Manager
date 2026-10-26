@@ -5,14 +5,14 @@ their pantry and suggests recipes they can make with what they have, using stric
 
 ## Features
 
-| Feature | Status |
-|---|---|
-| Pantry list (add, edit, delete ingredients with quantity, unit and optional expiry date) | Done (in-memory data) |
+| Feature | Status                                |
+|---|---------------------------------------|
+| Pantry list (add, edit, delete ingredients with quantity, unit and optional expiry date) | Done (in-memory data)                 |
 | Suggested recipes screen with empty-state message | Done (placeholder name-only matching) |
-| Recipe detail screen (ingredients and method) | Done (4 sample recipes) |
-| Settings screen (expiring-soon alerts, units) | Done (values saved, not yet used) |
-| Room database and 15-20 seeded recipes | Planned |
-| Strict matching rules (quantities, units, expiry) | Planned |
+| Recipe detail screen (ingredients and method) | Done (4 sample recipes)               |
+| Settings screen (expiring-soon alerts, units) | Done (values saved, not yet used)     |
+| Room database and 15-20 seeded recipes | Done                                  |
+| Strict matching rules (quantities, units, expiry) | Planned                               |
 
 ## Tech
 

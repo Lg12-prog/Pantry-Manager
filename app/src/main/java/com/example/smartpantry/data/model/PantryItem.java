@@ -1,11 +1,13 @@
 package com.example.smartpantry.data.model;
 
-/**
- * An ingredient the user has at home.
- * Plain Java class for now; Room annotations are added in the database step.
- */
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+/** An ingredient the user has at home. Stored in the "pantry_items" table. */
+@Entity(tableName = "pantry_items")
 public class PantryItem {
 
+    @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
     private double quantity;

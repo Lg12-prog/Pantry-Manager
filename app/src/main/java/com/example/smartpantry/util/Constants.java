@@ -5,8 +5,14 @@ public final class Constants {
     private Constants() {
     }
 
-    /** Marker meaning "no id" (a new, unsaved item). */
+    /** Marker meaning "no id was passed in" when reading an Intent extra (add mode). */
     public static final long NO_ID = -1L;
+
+    /**
+     * Id given to an item that has not been saved yet. Room treats 0 on an
+     * auto-generated primary key as "please generate an id" (so do NOT use NO_ID here).
+     */
+    public static final long NEW_ITEM_ID = 0L;
 
     // Intent extras
     public static final String EXTRA_PANTRY_ITEM_ID = "com.example.smartpantry.EXTRA_PANTRY_ITEM_ID";
